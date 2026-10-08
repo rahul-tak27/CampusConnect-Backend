@@ -2,21 +2,28 @@ const express = require("express");
 
 const app = express();
 
-app.use("/test", (req, res)=>{
-    res.send("Namste! this is Testing page");
+
+// app.use("/user", (req, res)=>{
+//     res.send({
+//         name:"rahul",
+//         branch:"it"
+//     });
+// });
+
+app.get("/user", (req, res)=>{
+    res.send({
+        name:"rahul",
+        branch:"it"
+    });
 });
 
-app.use("/product", (req, res)=>{
-    res.send("Namste! this is Product Page");
-});
-
-app.use("/users", (req, res)=>{
-    res.send("Namste! this is Users Page");
+app.post("/user", (req, res)=>{
+    // store data in database 
+    res.send({
+        name:"rahul",
+        branch:"IT"
+    });
 })
-
-app.use("/", (req, res)=>{
-    res.send("Namste! this is Home Page");
-});
 
 app.listen(7777, ()=>{
     console.log("server is listning on port number = 7777");
