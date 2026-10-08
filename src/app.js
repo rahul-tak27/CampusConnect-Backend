@@ -11,6 +11,9 @@ const app = express();
 // });
 
 app.get("/user", (req, res)=>{
+
+    console.log(req.query);
+
     res.send({
         name:"rahul",
         branch:"it"
