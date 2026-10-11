@@ -2,30 +2,10 @@ const express = require("express");
 
 const app = express();
 
-
-// app.use("/user", (req, res)=>{
-//     res.send({
-//         name:"rahul",
-//         branch:"it"
-//     });
-// });
+// we dont send response , the request remains pending and client waiting for a response 
 
 app.get("/user", (req, res)=>{
-
-    console.log(req.query);
-
-    res.send({
-        name:"rahul",
-        branch:"it"
-    });
-});
-
-app.post("/user", (req, res)=>{
-    // store data in database 
-    res.send({
-        name:"rahul",
-        branch:"IT"
-    });
+    console.log("user wait for response");
 })
 
 app.listen(7777, ()=>{
