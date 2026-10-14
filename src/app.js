@@ -1,54 +1,28 @@
 const express = require("express");
-
 const app = express();
+const{userAuth, authAdmin} = require("./middlewares/auth");
 
-// why do we need middleware ....... middele ware comes into picture from here 
+app.use("/admin", authAdmin);
 
-app.get("/admin/getAllData", (req, res, next) => {
-  console.log("midleware");
-  const key = "xwyz";
-  if(key === "xwyz"){
-    res.send("user are login successfully and send all data");
-  }
-  else{
-    res.status(401).send("fake user are detected")
-  }
-  
+app.get("/admin/getAllData", (req, res)=>{
+  res.send("Data Sent !");
 });
 
-app.get("/admin/deleteUser", (req, res, next) => {
-  console.log("midleware");
-  const key = "xcdz";
-  if(key === "xwyz"){
-    res.send("user are login successfully and send all data");
-  }
-  else{
-    res.status(401).send("fake user are detected on delete")
-  }
-  
+app.get("/admin/deleteAdmin", (req, res)=>{
+  res.send("Admin Deleted");
 });
 
-
-app.get(
-  "/user",
-  (req, res, next) => {
-    console.log("handler 1");
-    // res.send("this is handler 1");
-
-    next();
-    // res.send("this is handler 1");
-  },
-  (req, res, next) => {
-    console.log("handler 2");
-    next();
-  },
-  (req, res, next) => {
-    console.log("handler 3");
-    next();
-    res.send("this is handler 3");
-  },
+app.get("/user", userAuth,
+  (req, res)=>{
+    res.send("user Data sent");
+  }
 );
 
 app.listen(7777, () => {
   console.log("server is listning on port number = 7777");
 });
+
+
+
+
+
