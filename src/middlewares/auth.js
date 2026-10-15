@@ -28,3 +28,4 @@ module.exports = {
     authAdmin,
     userAuth
 }
+
