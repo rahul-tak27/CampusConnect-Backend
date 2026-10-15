@@ -1,22 +1,32 @@
 const express = require("express");
 const app = express();
-const{userAuth, authAdmin} = require("./middlewares/auth");
 
-app.use("/admin", authAdmin);
+// try catch error handling
+app.get("/getUserData", (req, res, next) => {
+  try {
+    throw new Error("User data error");
 
-app.get("/admin/getAllData", (req, res)=>{
-  res.send("Data Sent !");
-});
-
-app.get("/admin/deleteAdmin", (req, res)=>{
-  res.send("Admin Deleted");
-});
-
-app.get("/user", userAuth,
-  (req, res)=>{
-    res.send("user Data sent");
+    res.send("User data sent!");
+  } catch (err) {
+    next(err);
   }
-);
+});
+
+app.use("/", (req, res, next) => {
+  try {
+    throw new Error("Home route error");
+
+    res.send("Home page");
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Common error-handling middleware using err parameter
+app.use((err, req, res, next) => {
+  console.log(err.message);
+  res.status(500).send("Something went wrong contact support team");
+});
 
 app.listen(7777, () => {
   console.log("server is listning on port number = 7777");

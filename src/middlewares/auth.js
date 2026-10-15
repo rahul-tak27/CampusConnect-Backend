@@ -4,7 +4,7 @@ const authAdmin = (req, res, next)=>{
     const isadminAutharized = key === "xyz";
 
     if(!isadminAutharized){
-        res.status(401).send("Unaitharized Request !!");
+        res.status(401).send("Unautharized Request !!");
     }
     else{
         next();
@@ -17,7 +17,7 @@ const userAuth = (req, res, next)=>{
     const isadminAutharized = key === "xyz.2";
 
     if(!isadminAutharized){
-        res.status(401).send("Unaitharized user Request !!");
+        res.status(401).send("Unautharized user Request !!");
     }
     else{
         next();
