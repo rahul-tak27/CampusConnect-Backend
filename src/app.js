@@ -6,10 +6,25 @@ const app = express();
 
 const { connectDB } = require("./config/database");
 
+const User = require("./models/user");
+
+app.post("/signup", async (req, res) => {
+  const user = new User({
+    firstName: "Rahul",
+    lastName: "Tak",
+    emailId: "rahultak2027@gmail.com",
+    password: "rahul@123",
+  });
+
+  await user.save();
+
+  res.send("User Added Successfully !!");
+});
+
 connectDB()
   .then(() => {
     console.log("Database connected successfully!");
-    
+
     app.listen(7777, () => {
       console.log("server is listning on port number = 7777");
     });
