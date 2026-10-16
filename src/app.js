@@ -10,15 +10,20 @@ const User = require("./models/user");
 
 app.post("/signup", async (req, res) => {
   const user = new User({
-    firstName: "Rahul",
+    firstName: "Ramdyal",
     lastName: "Tak",
-    emailId: "rahultak2027@gmail.com",
-    password: "rahul@123",
+    emailId: "ramdyal2007@gmail.com",
+    password: "ramdyal@123",
   });
 
-  await user.save();
+  try{
+     await user.save();
 
-  res.send("User Added Successfully !!");
+     res.send("User Added Successfully !!");
+  }
+  catch(err){
+    res.status(400).send("Bad Request !");
+  } 
 });
 
 connectDB()
